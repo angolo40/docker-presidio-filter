@@ -1,0 +1,344 @@
+[
+  {
+    "name": "Codice Fiscale Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Codice Fiscale Standard",
+        "regex": "[A-Z]{6}\\d{2}[A-Z]\\d{2}[A-Z]\\d{3}[A-Z]",
+        "score": 0.99
+      },
+      {
+        "name": "Codice Fiscale With Spaces",
+        "regex": "[A-Z]{3}\\s+[A-Z]{3}\\s+\\d{2}[A-Z]\\s+\\d{2}[A-Z]\\s+\\d{3}[A-Z]",
+        "score": 0.99
+      },
+      {
+        "name": "Codice Fiscale Any Spacing",
+        "regex": "[A-Z]{3}\\s*[A-Z]{3}\\s*\\d{2}[A-Z]\\s*\\d{2}[A-Z]\\s*\\d{3}[A-Z]",
+        "score": 0.99
+      }
+    ],
+    "context": [],
+    "supported_entity": "CODICE_FISCALE"
+  },
+  {
+    "name": "Partita IVA Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Partita IVA Standard",
+        "regex": "\\d{11}",
+        "score": 0.85
+      },
+      {
+        "name": "Partita IVA With IT",
+        "regex": "IT\\d{11}",
+        "score": 0.95
+      },
+      {
+        "name": "Partita IVA With Spaces",
+        "regex": "IT\\s?\\d{1,3}\\s?\\d{1,3}\\s?\\d{1,3}\\s?\\d{1,2}",
+        "score": 0.95
+      }
+    ],
+    "context": [],
+    "supported_entity": "PARTITA_IVA"
+  },
+  {
+    "name": "Carta d'Identità Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Carta Identità Standard",
+        "regex": "[A-Z]{2}\\d{7}",
+        "score": 0.9
+      },
+      {
+        "name": "Carta Identità Alternative",
+        "regex": "[A-Z]{2}\\d{6,8}",
+        "score": 0.9
+      },
+      {
+        "name": "Carta Identità With Spaces",
+        "regex": "[A-Z]{2}\\s?\\d{1,3}\\s?\\d{1,2}\\s?\\d{1,2}",
+        "score": 0.9
+      },
+      {
+        "name": "Generic ID Card",
+        "regex": "[A-Z]{1,3}\\d{6,8}",
+        "score": 0.85
+      }
+    ],
+    "context": [],
+    "supported_entity": "CARTA_IDENTITA"
+  },
+  {
+    "name": "Patente Guida Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Patente Standard",
+        "regex": "[A-Z]{2}\\d{7}[A-Z]",
+        "score": 0.9
+      },
+      {
+        "name": "Patente Alternative",
+        "regex": "[A-Z]{2}\\d{6,8}[A-Z]",
+        "score": 0.9
+      },
+      {
+        "name": "Generic Patente",
+        "regex": "[A-Z]{1,3}\\d{6,8}[A-Z]{0,1}",
+        "score": 0.85
+      }
+    ],
+    "context": [],
+    "supported_entity": "PATENTE_GUIDA"
+  },
+  {
+    "name": "Passaporto Italiano Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Passaporto Standard",
+        "regex": "[A-Z]{2}\\d{7}",
+        "score": 0.9
+      },
+      {
+        "name": "Passaporto Elettronico",
+        "regex": "[A-Z]\\d{7}",
+        "score": 0.9
+      },
+      {
+        "name": "Passaporto YA",
+        "regex": "YA\\d{7}",
+        "score": 0.95
+      },
+      {
+        "name": "Generic Passport",
+        "regex": "[A-Z]{1,2}\\d{6,8}",
+        "score": 0.85
+      }
+    ],
+    "context": [],
+    "supported_entity": "PASSAPORTO"
+  },
+  {
+    "name": "IBAN Italiano Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "IBAN Standard",
+        "regex": "IT\\d{2}[A-Z]\\d{10}[0-9A-Z]{12}",
+        "score": 0.95
+      },
+      {
+        "name": "IBAN With Spaces",
+        "regex": "IT\\d{2}[A-Z]\\s\\d{5}\\s\\d{5}\\s[0-9A-Z]{12}",
+        "score": 0.95
+      },
+      {
+        "name": "IBAN With Various Spaces",
+        "regex": "IT\\d{2}\\s?[A-Z]\\s?\\d{1,5}\\s?\\d{1,5}\\s?\\d{1,12}[0-9A-Z]{0,12}",
+        "score": 0.95
+      },
+      {
+        "name": "IBAN With Dashes",
+        "regex": "IT\\d{2}-[A-Z]-\\d{1,5}-\\d{1,5}-[0-9A-Z]{1,12}",
+        "score": 0.95
+      },
+      {
+        "name": "IBAN Simple",
+        "regex": "IT[A-Z0-9]{25,34}",
+        "score": 0.9
+      }
+    ],
+    "context": [],
+    "supported_entity": "IBAN"
+  },
+  {
+    "name": "AHV/AVS Number Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "AHV/AVS Number",
+        "regex": "\\d{3}\\.\\d{4}\\.\\d{4}\\.\\d{2}",
+        "score": 0.99
+      },
+      {
+        "name": "AHV/AVS New Number",
+        "regex": "756\\.\\d{4}\\.\\d{4}\\.\\d{2}",
+        "score": 0.99
+      }
+    ],
+    "context": [],
+    "supported_entity": "AHV_AVS_NUMBER"
+  },
+  {
+    "name": "Swiss ID Card Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Swiss ID Standard",
+        "regex": "[A-Z]{3}\\d{6}",
+        "score": 0.95
+      },
+      {
+        "name": "Swiss ID Alternative",
+        "regex": "[A-Z]{2,3}\\d{6,7}",
+        "score": 0.9
+      }
+    ],
+    "context": [],
+    "supported_entity": "SWISS_ID_CARD"
+  },
+  {
+    "name": "Swiss Passport Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Swiss Passport Standard",
+        "regex": "[A-Z]\\d{7}",
+        "score": 0.95
+      },
+      {
+        "name": "Swiss Passport New",
+        "regex": "[A-Z]{1,2}\\d{7}",
+        "score": 0.95
+      },
+      {
+        "name": "Generic Swiss Passport",
+        "regex": "[A-Z]{1,2}\\d{6,8}",
+        "score": 0.9
+      }
+    ],
+    "context": [],
+    "supported_entity": "SWISS_PASSPORT"
+  },
+  {
+    "name": "Swiss VAT Number Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "VAT With Suffix",
+        "regex": "CHE-\\d{3}\\.\\d{3}\\.\\d{3}\\s?(MWST|TVA|IVA|VAT)?",
+        "score": 0.99
+      },
+      {
+        "name": "VAT Alternative",
+        "regex": "CHE[-.]?\\d{3}[-.]?\\d{3}[-.]?\\d{3}(\\s?(MWST|TVA|IVA|VAT))?",
+        "score": 0.99
+      },
+      {
+        "name": "VAT Simple",
+        "regex": "CHE\\d{9}",
+        "score": 0.95
+      }
+    ],
+    "context": [],
+    "supported_entity": "SWISS_VAT_NUMBER"
+  },
+  {
+    "name": "Swiss IBAN Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Swiss IBAN Standard",
+        "regex": "CH\\d{2}\\d{16,20}",
+        "score": 0.95
+      },
+      {
+        "name": "Swiss IBAN With Spaces",
+        "regex": "CH\\d{2}\\s\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}\\s?\\d{0,4}",
+        "score": 0.95
+      },
+      {
+        "name": "Swiss IBAN Flexible",
+        "regex": "CH\\d{2}\\s?\\d{1,4}\\s?\\d{1,4}\\s?\\d{1,4}\\s?\\d{1,4}\\s?\\d{0,4}",
+        "score": 0.95
+      }
+    ],
+    "context": [],
+    "supported_entity": "SWISS_IBAN"
+  },
+  {
+    "name": "Italian Phone Number Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Mobile With Prefix",
+        "regex": "(\\+39)?\\s?3\\d{2}\\s?\\d{3}\\s?\\d{3,4}",
+        "score": 0.99
+      },
+      {
+        "name": "Mobile Without Spaces",
+        "regex": "(\\+39)?3\\d{8,9}",
+        "score": 0.99
+      },
+      {
+        "name": "Fixed Phone",
+        "regex": "(\\+39)?\\s?0\\d{1,3}\\s?\\d{4,8}",
+        "score": 0.99
+      },
+      {
+        "name": "Generic Italian Number",
+        "regex": "3\\d{2}\\s?\\d{3}\\s?\\d{3}",
+        "score": 0.99
+      },
+      {
+        "name": "Italian Number Simple",
+        "regex": "3\\d{8,9}",
+        "score": 0.99
+      }
+    ],
+    "context": [],
+    "supported_entity": "PHONE_NUMBER"
+  },
+  {
+    "name": "Swiss Phone Number Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Swiss With Int Prefix",
+        "regex": "(\\+41|0041)\\s?[0-9]{2}\\s?[0-9]{3}\\s?[0-9]{2}\\s?[0-9]{2}",
+        "score": 0.99
+      },
+      {
+        "name": "Swiss National Format",
+        "regex": "0[0-9]{2}\\s?[0-9]{3}\\s?[0-9]{2}\\s?[0-9]{2}",
+        "score": 0.99
+      },
+      {
+        "name": "Swiss Without Spaces",
+        "regex": "0[0-9]{9}",
+        "score": 0.99
+      },
+      {
+        "name": "Swiss Mobile Simple",
+        "regex": "07[0-9]\\d{7}",
+        "score": 0.99
+      }
+    ],
+    "context": [],
+    "supported_entity": "PHONE_NUMBER"
+  },
+  {
+    "name": "Generic Bank Account Number Recognizer",
+    "supported_language": "all",
+    "patterns": [
+      {
+        "name": "Bank Account Standard",
+        "regex": "\\d{10,24}",
+        "score": 0.8
+      },
+      {
+        "name": "Bank Account With Dashes",
+        "regex": "\\d{1,6}-\\d{1,6}-\\d{1,12}",
+        "score": 0.85
+      }
+    ],
+    "context": [],
+    "supported_entity": "US_BANK_NUMBER"
+  }
+]
