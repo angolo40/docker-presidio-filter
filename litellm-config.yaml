@@ -1,60 +1,60 @@
 model_list:
-  # Claude model configuration
+  # Configuration for Claude model
   - model_name: claude-3-5-sonnet
     litellm_params:
       model: anthropic/claude-3-5-sonnet
-  # OpenAI model configuration
+
+  # Configuration for OpenAI model
   - model_name: gpt-4o-mini
     litellm_params:
       model: openai/gpt-4o-mini
 
-# Configurazione guardrails con Presidio
+# Guardrails configuration using Presidio
 guardrails:
   - guardrail_name: "presidio-pii-guard"
     litellm_params:
-      guardrail: presidio  # Utilizza Microsoft Presidio per PII masking
-      mode: "pre_call"     # Applica prima della chiamata al modello
-      output_parse_pii: True  # Sostituisce i token mascherati con i valori originali
-      default_on: true     # Esegue su tutte le richieste LLM
+      guardrail: presidio  # Use Microsoft Presidio for PII masking
+      mode: "pre_call"     # Apply before the model call
+      output_parse_pii: True  # Replace masked tokens with original values
+      default_on: true     # Execute on all LLM requests
 
-      # Percorso al file JSON dei riconoscitori
+      # Path to the JSON file of recognizers
       presidio_ad_hoc_recognizers: "./hooks/pii_recognizers.json"
 
-      # Lista completa delle entità da analizzare
       presidio_entities_to_analyze:
-        # Entità standard di Presidio
-        - "PERSON"
-        - "PHONE_NUMBER"
-        - "EMAIL_ADDRESS"
-        - "CREDIT_CARD"
-        - "LOCATION"
-        - "DATE_TIME"
-        - "URL"
-        - "IP_ADDRESS"
+      # Standard Presidio entities
+          - "PERSON"
+          - "PHONE_NUMBER"
+          - "EMAIL_ADDRESS"
+          - "CREDIT_CARD"
+          - "LOCATION"
+          - "DATE_TIME"
+          - "URL"
+          - "IP_ADDRESS"
+          # Italian entities
+          - "CODICE_FISCALE"
+          - "PARTITA_IVA"
+          - "CARTA_IDENTITA"
+          - "PATENTE_GUIDA"
+          - "PASSAPORTO"
+          - "IBAN"
+          # Swiss entities
+          - "AHV_AVS_NUMBER"
+          - "SWISS_ID_CARD"
+          - "SWISS_PASSPORT"
+          - "SWISS_VAT_NUMBER"
+          - "SWISS_IBAN"
+          # Additional entities
+          - "US_BANK_NUMBER"
 
-        # Entità italiane
-        - "CODICE_FISCALE"
-        - "PARTITA_IVA"
-        - "CARTA_IDENTITA"
-        - "PATENTE_GUIDA"
-        - "PASSAPORTO"
-        - "IBAN"
-
-        # Entità svizzere
-        - "AHV_AVS_NUMBER"
-        - "SWISS_ID_CARD"
-        - "SWISS_PASSPORT"
-        - "SWISS_VAT_NUMBER"
-        - "SWISS_IBAN"
-
-      # Impostazioni avanzate per migliorare la precisione
-      presidio_threshold: 0.3  # Soglia di confidenza più bassa per aumentare la sensibilità
-      presidio_context_words: 5  # Aumentare il numero di parole di contesto
-      presidio_allow_list: []  # Lista di eccezioni (valori da non mascherare)
+      # Advanced settings for improved accuracy
+      presidio_threshold: 0.2  # Lower confidence threshold to increase sensitivity
+      presidio_context_words: 5  # Increase the number of context words
+      presidio_allow_list: []  # List of exceptions (values not to be masked)
 
 # LiteLLM settings
 litellm_settings:
-  # Abilitare per il debugging dettagliato
+  # Enable for detailed debugging
   set_verbose: True
   # Proxy configuration
   drop_params: True
