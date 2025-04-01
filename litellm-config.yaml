@@ -1,0 +1,69 @@
+model_list:
+  # Claude model configuration
+  - model_name: claude-3-5-sonnet
+    litellm_params:
+      model: anthropic/claude-3-5-sonnet
+  # OpenAI model configuration
+  - model_name: gpt-4o-mini
+    litellm_params:
+      model: openai/gpt-4o-mini
+
+# Configurazione guardrails con Presidio
+guardrails:
+  - guardrail_name: "presidio-pii-guard"
+    litellm_params:
+      guardrail: presidio  # Utilizza Microsoft Presidio per PII masking
+      mode: "pre_call"     # Applica prima della chiamata al modello
+      output_parse_pii: True  # Sostituisce i token mascherati con i valori originali
+      default_on: true     # Esegue su tutte le richieste LLM
+
+      # Percorso al file JSON dei riconoscitori
+      presidio_ad_hoc_recognizers: "./hooks/pii_recognizers.json"
+
+      # Lista completa delle entità da analizzare
+      presidio_entities_to_analyze:
+        # Entità standard di Presidio
+        - "PERSON"
+        - "PHONE_NUMBER"
+        - "EMAIL_ADDRESS"
+        - "CREDIT_CARD"
+        - "LOCATION"
+        - "DATE_TIME"
+        - "URL"
+        - "IP_ADDRESS"
+
+        # Entità italiane
+        - "CODICE_FISCALE"
+        - "PARTITA_IVA"
+        - "CARTA_IDENTITA"
+        - "PATENTE_GUIDA"
+        - "PASSAPORTO"
+        - "IBAN"
+
+        # Entità svizzere
+        - "AHV_AVS_NUMBER"
+        - "SWISS_ID_CARD"
+        - "SWISS_PASSPORT"
+        - "SWISS_VAT_NUMBER"
+        - "SWISS_IBAN"
+
+      # Impostazioni avanzate per migliorare la precisione
+      presidio_threshold: 0.3  # Soglia di confidenza più bassa per aumentare la sensibilità
+      presidio_context_words: 5  # Aumentare il numero di parole di contesto
+      presidio_allow_list: []  # Lista di eccezioni (valori da non mascherare)
+
+# LiteLLM settings
+litellm_settings:
+  # Abilitare per il debugging dettagliato
+  set_verbose: True
+  # Proxy configuration
+  drop_params: True
+  max_parallel_requests: 100
+  num_workers: 8
+
+# General settings
+general_settings:
+  store_model_in_db: true
+  store_prompts_in_spend_logs: true
+  # Maximum wait time for model responses
+  request_timeout: 600
